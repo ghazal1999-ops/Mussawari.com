@@ -18,8 +18,7 @@
       --dark: #111111;
       --cream: #fffaf0;
       --accent: #ff5f1f;
-      --accent-soft: #ffd7c4;
-      --card: rgba(255, 250, 240, 0.75);
+      --card: rgba(255, 250, 240, 0.76);
       --radius: 26px;
       --shadow: 0 24px 70px rgba(0, 0, 0, 0.08);
     }
@@ -64,26 +63,28 @@
       top: 0;
       z-index: 50;
       backdrop-filter: blur(20px);
-      background: rgba(245, 242, 236, 0.78);
+      background: rgba(245, 242, 236, 0.82);
       border-bottom: 1px solid var(--line);
     }
 
     .nav-inner {
-      height: 76px;
+      height: 82px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 24px;
     }
 
-    .logo {
-      font-size: 1.15rem;
-      font-weight: 800;
-      letter-spacing: -0.04em;
+    .logo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
     }
 
-    .logo span {
-      color: var(--accent);
+    .logo-img {
+      height: 48px;
+      width: auto;
+      object-fit: contain;
     }
 
     .nav-links {
@@ -103,11 +104,11 @@
       border: 1px solid var(--text);
       border-radius: 999px;
       color: var(--text);
-      font-weight: 600;
+      font-weight: 650;
     }
 
     .hero {
-      min-height: calc(100vh - 76px);
+      min-height: calc(100vh - 82px);
       display: grid;
       align-items: center;
       padding: 88px 0 72px;
@@ -154,11 +155,12 @@
       color: var(--muted);
     }
 
-    .hero-actions {
+    .hero-actions,
+    .section-actions {
       display: flex;
       flex-wrap: wrap;
       gap: 14px;
-      margin-top: 34px;
+      margin-top: 30px;
     }
 
     .btn {
@@ -168,7 +170,7 @@
       min-height: 48px;
       padding: 0 20px;
       border-radius: 999px;
-      font-weight: 700;
+      font-weight: 750;
       transition: transform 0.2s ease, background 0.2s ease;
     }
 
@@ -259,7 +261,7 @@
 
     .section-kicker {
       color: var(--accent);
-      font-weight: 800;
+      font-weight: 850;
       text-transform: uppercase;
       letter-spacing: 0.12em;
       font-size: 0.76rem;
@@ -268,7 +270,7 @@
 
     .section-note {
       color: var(--muted);
-      max-width: 380px;
+      max-width: 390px;
       font-size: 1rem;
     }
 
@@ -298,7 +300,7 @@
 
     .number {
       color: var(--accent);
-      font-weight: 800;
+      font-weight: 850;
       font-size: 0.84rem;
     }
 
@@ -391,7 +393,7 @@
       color: var(--cream);
       display: grid;
       place-items: center;
-      font-weight: 800;
+      font-weight: 850;
     }
 
     .process-item h3 {
@@ -405,33 +407,36 @@
       font-size: 0.96rem;
     }
 
-    .lab-grid {
+    .page-card-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 18px;
     }
 
-    .lab-card {
+    .page-card {
       border-radius: 28px;
-      padding: 26px;
-      min-height: 250px;
+      padding: 28px;
+      min-height: 270px;
       background: var(--dark);
       color: var(--cream);
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    .lab-card:nth-child(2) {
+    .page-card:nth-child(2) {
       background: #2b241f;
     }
 
-    .lab-card:nth-child(3) {
+    .page-card:nth-child(3) {
       background: #ece2d4;
       color: var(--text);
       border: 1px solid var(--line);
     }
 
-    .lab-card h3 {
+    .page-card h3 {
       font-size: 1.55rem;
       line-height: 1;
       letter-spacing: -0.05em;
@@ -440,14 +445,27 @@
       z-index: 2;
     }
 
-    .lab-card p {
-      color: inherit;
+    .page-card p {
       opacity: 0.72;
       position: relative;
       z-index: 2;
     }
 
-    .lab-card::after {
+    .page-card .btn {
+      width: fit-content;
+      margin-top: 26px;
+      background: var(--cream);
+      color: var(--dark);
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-card.light .btn {
+      background: var(--dark);
+      color: var(--cream);
+    }
+
+    .page-card::after {
       content: "";
       position: absolute;
       width: 170px;
@@ -528,7 +546,7 @@
       }
 
       .services-grid,
-      .lab-grid {
+      .page-card-grid {
         grid-template-columns: repeat(2, 1fr);
       }
 
@@ -545,8 +563,12 @@
     @media (max-width: 700px) {
       .nav-inner {
         height: auto;
-        padding: 18px 0;
-        align-items: flex-start;
+        padding: 16px 0;
+        align-items: center;
+      }
+
+      .logo-img {
+        height: 42px;
       }
 
       .nav-links {
@@ -558,7 +580,7 @@
       }
 
       .services-grid,
-      .lab-grid {
+      .page-card-grid {
         grid-template-columns: 1fr;
       }
 
@@ -581,7 +603,13 @@
 
   <header class="nav">
     <div class="container nav-inner">
-      <a href="#" class="logo">Mussawari<span>.</span></a>
+      <a href="/" class="logo-link" aria-label="Mussawari Home">
+        <img
+          src="https://mussawari.com/wp-content/uploads/2026/05/logo.png"
+          alt="Mussawari logo"
+          class="logo-img"
+        />
+      </a>
 
       <nav class="nav-links">
         <a href="#services">3D Printing</a>
@@ -677,6 +705,11 @@
             </div>
           </article>
         </div>
+
+        <div class="section-actions">
+          <a href="/3d-printing/" class="btn btn-primary">Explore 3D Printing</a>
+          <a href="#contact" class="btn btn-secondary">Start a Project</a>
+        </div>
       </div>
     </section>
 
@@ -706,6 +739,11 @@
               <p>Fast experiments in shape, structure, texture, and fabrication.</p>
             </div>
           </div>
+        </div>
+
+        <div class="section-actions">
+          <a href="/portfolio/" class="btn btn-primary">View Portfolio</a>
+          <a href="#contact" class="btn btn-secondary">Discuss a Custom Piece</a>
         </div>
       </div>
     </section>
@@ -767,6 +805,11 @@
             A daily stream of discoveries across architecture, design, science, technology, AI, space, construction, and learning.
           </p>
         </div>
+
+        <div class="section-actions">
+          <a href="/daily-discoveries/" class="btn btn-primary">Visit Daily Discoveries</a>
+          <a href="/daily-discoveries/" class="btn btn-secondary">Explore Ideas</a>
+        </div>
       </div>
     </section>
 
@@ -782,20 +825,29 @@
           </p>
         </div>
 
-        <div class="lab-grid">
-          <article class="lab-card">
-            <h3>AI + Architecture</h3>
-            <p>Exploring how AI tools can help rethink design, research, and creative workflows.</p>
+        <div class="page-card-grid">
+          <article class="page-card">
+            <div>
+              <h3>AI + Architecture</h3>
+              <p>Exploring how AI tools can help rethink design, research, and creative workflows.</p>
+            </div>
+            <a href="/experiments/" class="btn">View Experiments</a>
           </article>
 
-          <article class="lab-card">
-            <h3>Learning Objects</h3>
-            <p>Book summaries, visual notes, generated slides, and experimental knowledge systems.</p>
+          <article class="page-card">
+            <div>
+              <h3>Learning Objects</h3>
+              <p>Book summaries, visual notes, generated slides, and experimental knowledge systems.</p>
+            </div>
+            <a href="/experiments/" class="btn">Explore Learning</a>
           </article>
 
-          <article class="lab-card">
-            <h3>Fabrication Tests</h3>
-            <p>Material studies, print tests, forms, joints, textures, and model-making experiments.</p>
+          <article class="page-card light">
+            <div>
+              <h3>Fabrication Tests</h3>
+              <p>Material studies, print tests, forms, joints, textures, and model-making experiments.</p>
+            </div>
+            <a href="/experiments/" class="btn">See Tests</a>
           </article>
         </div>
       </div>
@@ -812,6 +864,11 @@
             Essays and reflections on design, technology, architecture, creativity, and the ideas that do not fit neatly anywhere else.
           </p>
         </div>
+
+        <div class="section-actions">
+          <a href="/blog/" class="btn btn-primary">Read the Blog</a>
+          <a href="/blog/" class="btn btn-secondary">Unaccepted Thoughts</a>
+        </div>
       </div>
     </section>
 
@@ -827,8 +884,13 @@
               Send a sketch, photo, CAD file, or idea. I’ll review what is possible and suggest the cleanest way to make it real.
             </p>
 
-            <a href="mailto:hello@mussawari.com" class="btn">Email Mussawari</a>
+            <a href="/contact/" class="btn">Go to Contact Page</a>
           </div>
+        </div>
+
+        <div class="section-actions">
+          <a href="mailto:hello@mussawari.com" class="btn btn-primary">Email Mussawari</a>
+          <a href="/contact/" class="btn btn-secondary">Contact Page</a>
         </div>
       </div>
     </section>
